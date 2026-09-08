@@ -1,0 +1,36 @@
+# deps / build
+node_modules/
+.next/
+out/
+dist/
+*.log
+.env*
+!.env.example
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# local preview shots
+preview-*.png
+preview-*.jpg
+
+# heavy local-only masters (keep slim web previews in git)
+public/studio/incoming/
+public/studio/preview/*proxy*
+public/studio/preview/_held*
+public/studio/preview/_removed*
+public/studio/preview/koa-sam-diner-hero-30s.mp4
+public/studio/preview/one-last-call-hero-30s.mp4
+public/studio/preview/luke-hero-extract-1080p-muted.mp4
+public/studio/preview/koa-sam-diner-hero-montage*
+public/studio/preview/hero-reel.mp4
+public/studio/preview/social-cut.mp4
+public/studio/doc-golden.png
+public/studio/narrative-rain.png
+public/studio/promo-craft.png
+
+# vercel
+.vercel

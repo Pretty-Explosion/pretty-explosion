@@ -1,0 +1,18 @@
+# Keep anonymous/temp deploy under 100MB
+public/studio/incoming/**
+public/studio/preview/*proxy*
+public/studio/preview/_held*
+public/studio/preview/_removed*
+public/studio/preview/koa-sam-diner-hero-30s.mp4
+public/studio/preview/one-last-call-hero-30s.mp4
+public/studio/preview/luke-hero-extract-1080p-muted.mp4
+public/studio/preview/koa-sam-diner-hero-montage*
+public/studio/preview/hero-reel.mp4
+public/studio/preview/social-cut.mp4
+public/studio/doc-golden.png
+public/studio/narrative-rain.png
+public/studio/promo-craft.png
+preview-*.png
+*.log
+.next
+node_modules
