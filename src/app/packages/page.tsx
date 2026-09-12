@@ -16,7 +16,7 @@ export default function PackagesPage() {
       <div className="relative mx-auto max-w-6xl section-pad py-20 md:py-28">
         <div className="grid items-end gap-12 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="max-w-2xl">
-            <p className="eyebrow">Packages</p>
+            <p className="eyebrow">Studio package planning</p>
             <h1 className="editorial-display mt-5 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight md:text-5xl lg:text-[3.25rem]">
               Spark · Pulse · Explosion
             </h1>
@@ -24,7 +24,7 @@ export default function PackagesPage() {
               {educatePack.headline}
             </p>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-muted md:text-lg">
-              CAD planning bands for Lane 1 capital and revenue. Quote after brief — not sold
+              CAD planning bands for commercial packages. Quote after brief — not sold
               prices. Pay stays dark until a Business Number and CAD Stripe land.
             </p>
             <div className="mt-8">
