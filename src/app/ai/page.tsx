@@ -12,8 +12,8 @@ const sections = [
     eyebrow: "Video",
     title: "Faster previz & versions you approve",
     body: "AI helps us sketch looks, cut options, and iterate promo packages quickly. Directors and editors still shape the story. You get clear previews — and you approve before anything ships.",
-    href: "/studio",
-    cta: "See studio packages",
+    href: "/packages",
+    cta: "See packages",
   },
   {
     eyebrow: "Grants",

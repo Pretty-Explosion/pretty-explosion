@@ -169,6 +169,24 @@ h1 {
   border-color: rgba(220, 225, 235, 0.45);
 }
 
+/* Dark / disabled buy — no live Stripe until BN */
+.btn-soon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.125rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(192, 198, 208, 0.1);
+  color: rgba(154, 161, 171, 0.5);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  padding: 0.7rem 1.4rem;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 .input-field {
   width: 100%;
   border-radius: 0.25rem;
@@ -296,6 +314,13 @@ html.light .btn-secondary:hover {
   border-color: rgba(10, 10, 12, 0.45);
 }
 
+[data-theme="light"] .btn-soon,
+html.light .btn-soon {
+  background: rgba(10, 10, 12, 0.06);
+  border: 1px solid rgba(10, 10, 12, 0.1);
+  color: rgba(107, 114, 128, 0.7);
+}
+
 [data-theme="light"] .input-field,
 html.light .input-field {
   background: #ffffff;
@@ -400,6 +425,13 @@ html.paper .btn-secondary {
 html.paper .btn-secondary:hover {
   background: rgba(42, 38, 34, 0.04);
   border-color: rgba(42, 38, 34, 0.42);
+}
+
+[data-theme="paper"] .btn-soon,
+html.paper .btn-soon {
+  background: rgba(42, 38, 34, 0.05);
+  border: 1px solid rgba(42, 38, 34, 0.1);
+  color: rgba(110, 103, 94, 0.7);
 }
 
 [data-theme="paper"] .input-field,
@@ -553,6 +585,13 @@ html.editorial .btn-secondary {
 html.editorial .btn-secondary:hover {
   background: rgba(18, 17, 16, 0.04);
   border-color: rgba(18, 17, 16, 0.4);
+}
+
+[data-theme="editorial"] .btn-soon,
+html.editorial .btn-soon {
+  background: rgba(18, 17, 16, 0.05);
+  border: 1px solid rgba(18, 17, 16, 0.1);
+  color: rgba(92, 88, 84, 0.7);
 }
 
 [data-theme="editorial"] .input-field,

@@ -10,6 +10,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 const links = [
   { href: "/", label: "Home" },
   { href: "/studio", label: "Studio" },
+  { href: "/packages", label: "Packages" },
   { href: "/grants", label: "Grants" },
   { href: "/journalism", label: "Journalism" },
   { href: "/recruit", label: "Recruit" },
@@ -59,7 +60,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-3 py-1.5 text-[13px] font-medium tracking-wide transition-colors xl:px-3.5 ${
+                className={`relative px-2.5 py-1.5 text-[13px] font-medium tracking-wide transition-colors xl:px-3 ${
                   active ? "text-foreground" : "text-muted/80 hover:text-foreground"
                 }`}
               >

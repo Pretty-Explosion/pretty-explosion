@@ -1,64 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { PackageCard } from "@/components/PackageCard";
+import { videoPackages } from "@/data/packages";
 
 export const metadata: Metadata = {
   title: "Quality Video Promotion",
   description:
     "Film, docs, and movies via Quality Video Promotion — Spark, Pulse, and Explosion packages. Human craft + AI speed. Brief → preview → approve.",
 };
-
-const packages = [
-  {
-    name: "Spark",
-    tag: "Social-ready",
-    price: "From $2,500",
-    note: "Illustrative example pricing",
-    summary: "A polished short-form promo for product drops, artist singles, or campaign teasers.",
-    deliverables: [
-      "15–30s hero cut + 9:16 crop",
-      "AI-assisted rough assembly",
-      "1 revision round",
-      "Color pass & mix",
-      "2 platform aspect ratios",
-    ],
-    bestFor: "Creators, startups, single-asset launches",
-  },
-  {
-    name: "Pulse",
-    tag: "Most booked",
-    price: "From $8,500",
-    note: "Illustrative example pricing",
-    summary: "A multi-cut campaign package with narrative beat, talent direction, and channel variants.",
-    deliverables: [
-      "60–90s hero film",
-      "3 social cutdowns",
-      "Moodboard + shotlist",
-      "2 revision rounds",
-      "Licensed/AI stock + original VO guidance",
-      "Captioned masters",
-    ],
-    bestFor: "Brands, nonprofits, album campaigns",
-  },
-  {
-    name: "Explosion",
-    tag: "Flagship",
-    price: "From $28,000",
-    note: "Illustrative example pricing",
-    summary:
-      "Full cinematic promo production — concept through delivery — with human directors and AI-accelerated pipelines.",
-    deliverables: [
-      "90s–3min campaign film",
-      "Full creative treatment",
-      "On-set or hybrid production day(s)",
-      "Editor suite + finishing",
-      "Unlimited social variants within scope",
-      "Inclusive casting & story consult",
-      "Delivery kit + usage guide",
-    ],
-    bestFor: "Brand films, artist docs, major launches",
-  },
-];
 
 const process = [
   {
@@ -217,7 +167,7 @@ export default function StudioPage() {
             <Link href="/start" className="btn-primary">
               Start a brief
             </Link>
-            <Link href="#packages" className="btn-secondary">
+            <Link href="/packages" className="btn-secondary">
               See packages
             </Link>
           </div>
@@ -306,42 +256,23 @@ export default function StudioPage() {
               Spark · Pulse · Explosion
             </h2>
             <p className="mt-5 text-sm leading-relaxed text-muted">
-              Example packaging for planning conversations.{" "}
-              <span className="text-foreground/70">All pricing is illustrative</span> — final quotes
-              depend on scope, talent, locations, and usage.
+              CAD planning bands — quote after brief, not sold prices. Final quotes depend on
+              scope, talent, locations, and usage.
             </p>
           </div>
 
           <div className="mt-14 grid gap-px bg-card-border lg:grid-cols-3">
-            {packages.map((pkg) => (
-              <div key={pkg.name} className="flex flex-col bg-background p-8 md:p-10">
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight">
-                    {pkg.name}
-                  </h3>
-                  <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted">
-                    {pkg.tag}
-                  </span>
-                </div>
-                <p className="mt-6 font-[family-name:var(--font-display)] text-xl font-medium text-foreground/90">
-                  {pkg.price}
-                </p>
-                <p className="mt-1 text-xs text-muted/60">{pkg.note}</p>
-                <p className="mt-5 text-sm leading-relaxed text-muted">{pkg.summary}</p>
-                <ul className="mt-8 flex-1 space-y-2.5 text-sm text-foreground/70">
-                  {pkg.deliverables.map((d) => (
-                    <li key={d} className="flex gap-2.5">
-                      <span className="mt-2 h-px w-3 shrink-0 bg-foreground/25" />
-                      {d}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-8 border-t border-card-border pt-5 text-xs text-muted">
-                  Best for: {pkg.bestFor}
-                </p>
-              </div>
+            {videoPackages.map((pkg) => (
+              <PackageCard key={pkg.name} pkg={pkg} />
             ))}
           </div>
+          <p className="mt-6 text-xs text-muted/70">
+            Full bands, retainer, and AI-positive educate packs on{" "}
+            <Link href="/packages" className="text-foreground/70 transition hover:text-foreground">
+              /packages
+            </Link>
+            .
+          </p>
         </div>
 
         {/* Process */}

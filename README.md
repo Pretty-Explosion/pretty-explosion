@@ -35,6 +35,7 @@ npm run lint    # ESLint
 | `/start` | Calm three-door entry — Video / Grants / Partner |
 | `/ai` | Plain-language "How AI helps you" (brief → preview → approve) |
 | `/studio` | Quality Video Promotion — Spark / Pulse / Explosion |
+| `/packages` | Planning bands (quote after brief) — Spark / Pulse / Explosion + retainer |
 | `/grants` | Filterable explorer with example grant data |
 | `/assistant` | Grant AI chat (mock intelligence) |
 | `/journalism` | Truth-seeking journalism desk |
@@ -79,7 +80,7 @@ CSS variables: `--font-display`, `--font-body`, `--font-mono` (via `next/font/go
 
 - All grant listings are marked as **examples** for preview purposes.
 - The Grant AI assistant runs entirely in the browser — no external LLM or API keys.
-- Studio package pricing is **illustrative** only.
+- Studio / packages bands are **CAD planning ranges** — quote after brief, not sold prices. Buy stays dark until BN / CAD Stripe.
 - AI client promise: **brief → preview → approve**, with human craft on every delivery.
 - Built for mobile-first responsive layouts with sticky navigation and footer.
 
