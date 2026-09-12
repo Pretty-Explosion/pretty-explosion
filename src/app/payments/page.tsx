@@ -94,7 +94,7 @@ export default function PaymentsPage() {
             <ol className="mt-4 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-muted">
               <li>
                 Start with a{" "}
-                <Link href="/studio" className="font-medium text-accent-2 hover:text-white">
+                <Link href="/packages" className="font-medium text-accent-2 hover:text-white">
                   studio package
                 </Link>{" "}
                 or path on{" "}

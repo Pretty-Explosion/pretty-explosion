@@ -3,6 +3,7 @@ import Link from "next/link";
 const footerLinks = [
   { href: "/start", label: "Start" },
   { href: "/studio", label: "Studio" },
+  { href: "/packages", label: "Packages" },
   { href: "/grants", label: "Grants" },
   { href: "/journalism", label: "Journalism" },
   { href: "/recruit", label: "Recruit" },
@@ -80,7 +81,7 @@ export function Footer() {
       </div>
       <div className="border-t border-card-border">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 section-pad py-5 text-xs text-muted/70 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Pretty Explosion Ltd.</p>
+          <p>© {new Date().getFullYear()} Pretty Explosion Ltd (BC)</p>
           <p>Cinema-grade craft. Fairer funding. Rigorous truth.</p>
         </div>
       </div>

@@ -127,14 +127,14 @@ export default function HomePage() {
             </h2>
             <p className="mt-6 text-muted leading-relaxed">
               Quality Video Promotion — Spark, Pulse, or Explosion. Brief → preview → approve.
-              Pricing is illustrative.
+              CAD planning bands. Quote after brief.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-3">
-              <Link href="/studio" className="btn-primary">
-                View studio
+              <Link href="/packages" className="btn-primary">
+                See packages
               </Link>
-              <Link href="/start" className="btn-secondary">
-                Start
+              <Link href="/studio" className="btn-secondary">
+                View studio
               </Link>
             </div>
           </motion.div>
