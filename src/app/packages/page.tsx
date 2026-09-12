@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { HardSellPromoSection } from "@/components/HardSellPromo";
 import { PackageBuySoon, PackageCard, PackageSpine } from "@/components/PackageCard";
 import { educatePack, retainerPackage, videoPackages } from "@/data/packages";
 
 export const metadata: Metadata = {
   title: "Packages",
   description:
-    "Spark, Pulse, and Explosion planning bands for Quality Video — quote after brief. Pretty Explosion Ltd (BC).",
+    "2:00 Hard-Sell sliding scale plus Spark, Pulse, and Explosion planning bands — quote after brief. Pretty Explosion Ltd (BC).",
 };
 
 export default function PackagesPage() {
@@ -34,6 +35,9 @@ export default function PackagesPage() {
               <Link href="/start" className="btn-primary">
                 Start a brief
               </Link>
+              <Link href="#hard-sell" className="btn-secondary">
+                2:00 Hard-Sell
+              </Link>
               <Link href="/studio#packages" className="btn-secondary">
                 Studio packages
               </Link>
@@ -58,6 +62,8 @@ export default function PackagesPage() {
             </figcaption>
           </figure>
         </div>
+
+        <HardSellPromoSection />
 
         <div id="tiers" className="mt-28 scroll-mt-24 md:mt-36">
           <div className="max-w-lg">

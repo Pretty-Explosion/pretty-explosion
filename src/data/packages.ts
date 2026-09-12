@@ -88,3 +88,41 @@ export const educatePack = {
   summary:
     "Explainers and education films that treat AI as a tool that helps people — not a stunt. Planning sits in the Pulse–Explosion band. Quote after brief.",
 };
+
+export type UseRightsBand = {
+  name: string;
+  tag: string;
+  band: string;
+  rights: string;
+};
+
+export const hardSellPromo = {
+  name: "2:00 Hard-Sell",
+  tag: "PE 2:00 Hard-Sell Promo",
+  duration: "~2:00",
+  headline: "The future of business — fast, efficient, quality.",
+  summary:
+    "A ~2:00 hard-sell promo for new clients. Sliding scale by use rights. Quote after brief — not list prices.",
+  usageNote:
+    "Usage — where it runs and for how long — belongs on the brief. If Personal or Public later runs as paid ads, we re-quote an upgrade.",
+  useRights: [
+    {
+      name: "Personal",
+      tag: "Portfolio",
+      band: "CAD $2.5–8k",
+      rights: "Non-commercial / portfolio only.",
+    },
+    {
+      name: "Public",
+      tag: "Public-good",
+      band: "CAD $8–18k",
+      rights: "Public-good / educate / CSR.",
+    },
+    {
+      name: "Commercial",
+      tag: "Paid ads",
+      band: "CAD $15–25k",
+      rights: "Paid ads. Explosion only if flagship CSR / AI-positive.",
+    },
+  ] satisfies UseRightsBand[],
+};

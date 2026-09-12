@@ -35,7 +35,7 @@ npm run lint    # ESLint
 | `/start` | Calm three-door entry — Video / Grants / Partner |
 | `/ai` | Plain-language "How AI helps you" (brief → preview → approve) |
 | `/studio` | Quality Video Promotion — Spark / Pulse / Explosion |
-| `/packages` | Planning bands (quote after brief) — Spark / Pulse / Explosion + retainer |
+| `/packages` | Planning bands (quote after brief) — 2:00 Hard-Sell sliding scale, Spark / Pulse / Explosion + retainer |
 | `/grants` | Filterable explorer with example grant data |
 | `/assistant` | Grant AI chat (mock intelligence) |
 | `/journalism` | Truth-seeking journalism desk |
