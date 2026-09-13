@@ -11,7 +11,7 @@ const paths = [
   {
     eyebrow: "01",
     title: "Start a Quality Video brief",
-    body: "Spark, Pulse, or Explosion — CAD planning bands, quote after brief. Cinema-grade promo with human craft and AI speed. Brief → preview → approve.",
+    body: "Spark, Pulse, Explosion, or a ~2:00 Hard-Sell — CAD planning bands, quote after brief. Cinema-grade promo with human craft and AI speed. Brief → preview → approve.",
     href: "/packages",
     secondaryHref: "/studio",
     secondaryCta: "Open studio",

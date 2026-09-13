@@ -267,7 +267,7 @@ export default function StudioPage() {
             ))}
           </div>
           <p className="mt-6 text-xs text-muted/70">
-            Full bands, retainer, and AI-positive educate packs on{" "}
+            Full bands, 2:00 Hard-Sell, retainer, and AI-positive educate packs on{" "}
             <Link href="/packages" className="text-foreground/70 transition hover:text-foreground">
               /packages
             </Link>
