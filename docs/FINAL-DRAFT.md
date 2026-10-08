@@ -97,7 +97,9 @@ See **[`PUBLISH-CRITERIA.md`](./PUBLISH-CRITERIA.md)** for the full DONE vs BLOC
 
 **Confirmed:** Pretty Explosion Ltd (BC limited company) · contact email prettyxplosion@gmail.com  
 
-**Still blocked:** entity registration, bank, Stripe, domain, Origin/hosting, metadataBase URL, clips, lawyer sign-off on invest/Energy/alternate-rails copy.  
+**Still blocked:** entity registration, bank, Stripe, pointing prettyexplosion.com at the host, Origin/hosting, clips, lawyer sign-off on invest/Energy/alternate-rails copy.
+
+**Production origin:** https://prettyexplosion.com (`NEXT_PUBLIC_SITE_URL` overrides metadata, Open Graph, canonicals, sitemap, and robots).  
 
 ---
 

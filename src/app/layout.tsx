@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ThemeFromQuery } from "@/components/ThemeFromQuery";
+import { getSiteUrl } from "@/lib/site";
 import "./globals.css";
 
 const display = Space_Grotesk({
@@ -24,9 +25,13 @@ const mono = JetBrains_Mono({
   weight: ["400", "500", "600"],
 });
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
-  // Replace with production URL at go-live
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "./",
+  },
   title: {
     default: "Pretty Explosion — Quality Video · Grants · Journalism",
     template: "%s · Pretty Explosion",
@@ -53,6 +58,7 @@ export const metadata: Metadata = {
       "Premium AI-assisted video promotion, grant intelligence for creators, and truth-seeking journalism.",
     type: "website",
     siteName: "Pretty Explosion",
+    url: "./",
     images: [{ url: "/brand/logo/galactic-keyart.png", alt: "Pretty Explosion" }],
   },
   robots: { index: true, follow: true },

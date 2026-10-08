@@ -21,7 +21,9 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ### Contact form email
 
-`/contact` and `/recruit` post to a Route Handler that sends mail with [Resend](https://resend.com). Copy `.env.example` to `.env.local` and set `RESEND_API_KEY`. Without that key the form shows an error instead of a fake success. Sign the Resend account up with prettyxplosion@gmail.com so the default sender can reach the studio inbox before a domain is verified.
+`/contact` and `/recruit` post to a Route Handler that sends mail with [Resend](https://resend.com). Copy `.env.example` to `.env.local` and set `RESEND_API_KEY`. Without that key the form shows an error instead of a fake success. Sign the Resend account up with prettyxplosion@gmail.com so the default sender can reach the studio inbox before prettyexplosion.com is verified in Resend. After that verification, set `CONTACT_FROM_EMAIL` to `Pretty Explosion <hello@prettyexplosion.com>`.
+
+The public origin defaults to `https://prettyexplosion.com` (`NEXT_PUBLIC_SITE_URL` overrides it). That value is the metadata base, Open Graph and canonical origin, sitemap, and robots host.
 
 ### Other scripts
 
