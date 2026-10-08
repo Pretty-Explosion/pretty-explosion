@@ -17,7 +17,7 @@ Use this as the single go / no-go list. **DONE** = already true in the draft. **
 | **DONE** (draft / site + Luke-provided email) | **16** |
 | **BLOCKED** (needs Luke) | **12** |
 
-Soft-launch of a marketing shell can proceed once domain + hosting + metadataBase land; full commercial launch also needs Pretty Explosion Ltd registration, bank, Stripe, and counsel sign-off on invest / Energy / alternate-rails copy.
+Soft-launch of a marketing shell can proceed once prettyexplosion.com points at the host; full commercial launch also needs Pretty Explosion Ltd registration, bank, Stripe, and counsel sign-off on invest / Energy / alternate-rails copy.
 
 ---
 
@@ -33,12 +33,13 @@ Soft-launch of a marketing shell can proceed once domain + hosting + metadataBas
 - [x] Journalism desk — standards + sample directions marked illustrative
 - [x] Invest page — Canada/BC securities disclaimer; no fake traction / AUM
 - [x] Payments and Energy page — CAD-first framing; prepaid Energy; no live checkout
-- [x] Contact form — client validation + mock submit
+- [x] Contact form — validated submissions on `/contact` and `/recruit`, delivered by Resend once `RESEND_API_KEY` is set
 - [x] Contact email — prettyxplosion@gmail.com (mailto on Contact + Footer)
 - [x] AI client promise — brief to preview to approve across /ai, /studio, /start
 - [x] Internal docs — FINAL-DRAFT, deploy, BC setup, payments notes, marketing plan
 - [x] Entity choice — Pretty Explosion Ltd (BC limited company) confirmed; registration still pending
 - [x] Production build expected to pass
+- [x] metadataBase, Open Graph, canonicals, sitemap, and robots — https://prettyexplosion.com unless `NEXT_PUBLIC_SITE_URL` is set
 
 ---
 
@@ -52,13 +53,12 @@ Soft-launch of a marketing shell can proceed once domain + hosting + metadataBas
 
 ### Identity and reachability
 
-- [ ] Domain — production hostname chosen + DNS
+- [ ] Domain DNS — production origin is https://prettyexplosion.com (GoDaddy). Point the hostname at the host.
 - [ ] Public phone / mailing address — only if you want them public (email is done)
 
 ### Hosting and metadata
 
 - [ ] Origin / hosting — Origin namespace (or SCM org) + connected host (e.g. Vercel)
-- [ ] metadataBase URL — replace http://localhost:3000 in src/app/layout.tsx with the real production URL
 
 ### Assets and counsel
 
@@ -70,8 +70,8 @@ Soft-launch of a marketing shell can proceed once domain + hosting + metadataBas
 ### Optional (nice for launch, not hard blockers for a shell)
 
 - [ ] Real grant programs to replace example catalog rows
-- [ ] Domain email / Workspace later (initial contact: prettyxplosion@gmail.com)
-- [ ] Contact form mailer (Resend, Formspree, etc.)
+- [ ] Domain email / Workspace later (inbox stays prettyxplosion@gmail.com; form sender can be hello@prettyexplosion.com after Resend DNS verification)
+- [ ] Resend API key on the host — form code is wired; inbox delivery stays off until `RESEND_API_KEY` is set (see `.env.example`)
 - [ ] Analytics (privacy-aware for Canada)
 
 ---

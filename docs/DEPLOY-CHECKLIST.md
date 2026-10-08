@@ -8,8 +8,8 @@ Use this when moving the local final draft toward a public host (Origin / Cursor
 
 - [ ] Confirm **Origin namespace** (or chosen SCM org) for the production repo
 - [ ] Connect hosting (e.g. Vercel to Origin) per https://cursor.com/codebase/get-started
-- [ ] Decide production domain / subdomain (placeholder OK until DNS is ready)
-- [ ] Set metadataBase in src/app/layout.tsx from http://localhost:3000 to the real site URL once known
+- [x] Production origin — https://prettyexplosion.com (GoDaddy). Still point DNS at the host.
+- [x] metadataBase — `NEXT_PUBLIC_SITE_URL`, default https://prettyexplosion.com (`src/lib/site.ts`)
 
 ---
 
@@ -17,8 +17,9 @@ Use this when moving the local final draft toward a public host (Origin / Cursor
 
 | Variable / secret | Needed? | Notes |
 |---|---|---|
-| Public site URL | Yes (at go-live) | For Open Graph / canonicals via metadataBase |
-| Contact form mailer (Resend, Formspree, etc.) | Optional | Form currently validates + mock-submits client-side only |
+| `NEXT_PUBLIC_SITE_URL` | No | Defaults to https://prettyexplosion.com. Set only to override metadata, Open Graph, canonicals, sitemap, and robots. |
+| `RESEND_API_KEY` | Yes, for live leads | Contact and recruit forms send through Resend. See `.env.example`. Without the key the form shows an error. |
+| `CONTACT_FROM_EMAIL` | After domain verification | Defaults to the shared Resend sender. Set to `Pretty Explosion <hello@prettyexplosion.com>` once prettyexplosion.com is verified. |
 | LLM / Grant AI API keys | No for current preview | Assistant is local mock intelligence |
 | Analytics | Optional | Do not invent traction metrics on-site |
 
@@ -37,7 +38,7 @@ From the pretty-explosion project root:
 - [ ] Production build exits 0
 - [ ] Spot-check /, /start, /studio, /grants, /contact on desktop + phone width
 - [ ] Confirm galactic cover + blackhole nav/footer still load from public/brand/logo/
-- [ ] Confirm contact form validates without a backend
+- [ ] Confirm `/contact` and `/recruit` show an error when `RESEND_API_KEY` is missing, and deliver to prettyxplosion@gmail.com when it is set
 
 ---
 
@@ -48,7 +49,7 @@ Suggested path (pick one; do not invent vendor lock-in):
 1. Origin + connected Vercel (or equivalent) for the Next.js App Router app
 2. Set production branch / auto-deploy on main
 3. Attach custom domain when ready
-4. After URL is live: update metadataBase, Open Graph image absolute URLs if needed, and robots
+4. Attach https://prettyexplosion.com. Metadata, Open Graph, canonicals, sitemap, and robots already use that origin unless `NEXT_PUBLIC_SITE_URL` is set.
 
 Preview / staging before production is recommended while media and legal copy are still pending.
 

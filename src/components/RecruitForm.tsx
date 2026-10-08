@@ -1,57 +1,64 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { RECRUIT_ROLES, postInquiry, validateInquiry, type InquiryFieldErrors } from "@/lib/inquiry";
 
 type Errors = Partial<Record<"name" | "email" | "role" | "message", string>>;
 
-const roles = [
-  "Director / DP",
-  "Editor",
-  "Journalist",
-  "Grant writer",
-  "Producer",
-  "AI-fluent creative",
-  "Other craft",
-];
+function toFormErrors(fieldErrors: InquiryFieldErrors | undefined): Errors {
+  if (!fieldErrors) return {};
+  const errors: Errors = {};
+  if (fieldErrors.name) errors.name = fieldErrors.name;
+  if (fieldErrors.email) errors.email = fieldErrors.email;
+  if (fieldErrors.topic) errors.role = fieldErrors.topic;
+  if (fieldErrors.message) errors.message = fieldErrors.message;
+  return errors;
+}
 
 export function RecruitForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState(roles[0]);
+  const [role, setRole] = useState<string>(RECRUIT_ROLES[0]);
   const [message, setMessage] = useState("");
+  const [botField, setBotField] = useState("");
   const [errors, setErrors] = useState<Errors>({});
+  const [formError, setFormError] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
 
-  function validate(): Errors {
-    const next: Errors = {};
-    if (!name.trim() || name.trim().length < 2) next.name = "Please enter your name.";
-    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      next.email = "Enter a valid email address.";
-    }
-    if (!role.trim()) next.role = "Choose a role.";
-    if (!message.trim() || message.trim().length < 20) {
-      next.message = "Share at least 20 characters about your craft or interest.";
-    }
-    return next;
-  }
-
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    const next = validate();
+    setFormError("");
+    const fields = {
+      kind: "recruit" as const,
+      name,
+      email,
+      topic: role,
+      message,
+      botField,
+    };
+    const next = toFormErrors(validateInquiry(fields));
     setErrors(next);
     if (Object.keys(next).length > 0) return;
+
     setSending(true);
-    window.setTimeout(() => {
-      setSending(false);
-      setSubmitted(true);
-      setName("");
-      setEmail("");
-      setRole(roles[0]);
-      setMessage("");
-    }, 700);
+    const result = await postInquiry(fields);
+    setSending(false);
+
+    if (!result.ok) {
+      setErrors(toFormErrors(result.fieldErrors));
+      setFormError(result.error);
+      return;
+    }
+
+    setSubmitted(true);
+    setName("");
+    setEmail("");
+    setRole(RECRUIT_ROLES[0]);
+    setMessage("");
+    setBotField("");
   }
 
   return (
@@ -73,7 +80,7 @@ export function RecruitForm() {
               Thanks — we got your note
             </h2>
             <p className="mx-auto mt-3 max-w-md text-sm text-muted">
-              This local preview does not send email yet. Prefer to write directly?{" "}
+              Your interest is in the studio inbox. Prefer to write directly?{" "}
               <a href="mailto:prettyxplosion@gmail.com?subject=Recruit%20-%20Pretty%20Explosion" className="text-accent underline-offset-2 hover:underline">
                 prettyxplosion@gmail.com
               </a>
@@ -92,6 +99,19 @@ export function RecruitForm() {
             className="relative space-y-5"
             noValidate
           >
+            <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+              <label>
+                Website
+                <input
+                  type="text"
+                  name="bot-field"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={botField}
+                  onChange={(event) => setBotField(event.target.value)}
+                />
+              </label>
+            </div>
             <div className="grid gap-5 md:grid-cols-2">
               <label className="block text-sm">
                 <span className="mb-2 block font-medium">Name</span>
@@ -100,6 +120,7 @@ export function RecruitForm() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   autoComplete="name"
+                  aria-required="true"
                   aria-invalid={!!errors.name}
                 />
                 {errors.name && <span className="mt-1.5 block text-xs text-accent">{errors.name}</span>}
@@ -112,6 +133,7 @@ export function RecruitForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   autoComplete="email"
+                  aria-required="true"
                   aria-invalid={!!errors.email}
                 />
                 {errors.email && <span className="mt-1.5 block text-xs text-accent">{errors.email}</span>}
@@ -123,8 +145,10 @@ export function RecruitForm() {
                 className="input-field cursor-pointer"
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
+                aria-required="true"
+                aria-invalid={!!errors.role}
               >
-                {roles.map((r) => (
+                {RECRUIT_ROLES.map((r) => (
                   <option key={r}>{r}</option>
                 ))}
               </select>
@@ -137,20 +161,26 @@ export function RecruitForm() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="What you make, how you like to work, and why PE…"
+                aria-required="true"
                 aria-invalid={!!errors.message}
               />
               {errors.message && (
                 <span className="mt-1.5 block text-xs text-accent">{errors.message}</span>
               )}
             </label>
+            {formError && (
+              <p role="alert" className="rounded-2xl border border-card-border bg-card px-4 py-3 text-sm text-foreground">
+                {formError}
+              </p>
+            )}
             <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
               <p className="text-xs text-muted">
-                Client-side mock · or email{" "}
+                Or email{" "}
                 <a href="mailto:prettyxplosion@gmail.com" className="text-accent underline-offset-2 hover:underline">
                   prettyxplosion@gmail.com
                 </a>
               </p>
-              <button type="submit" className="btn-primary" disabled={sending}>
+              <button type="submit" className="btn-primary" disabled={sending} aria-busy={sending}>
                 {sending ? "Sending…" : "Express interest"}
               </button>
             </div>
