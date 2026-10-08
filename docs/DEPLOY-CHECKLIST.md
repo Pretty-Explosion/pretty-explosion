@@ -18,7 +18,7 @@ Use this when moving the local final draft toward a public host (Origin / Cursor
 | Variable / secret | Needed? | Notes |
 |---|---|---|
 | Public site URL | Yes (at go-live) | For Open Graph / canonicals via metadataBase |
-| Contact form mailer (Resend, Formspree, etc.) | Optional | Form currently validates + mock-submits client-side only |
+| `RESEND_API_KEY` | Yes, for live leads | Contact and recruit forms send through Resend. See `.env.example`. Without the key the form shows an error. |
 | LLM / Grant AI API keys | No for current preview | Assistant is local mock intelligence |
 | Analytics | Optional | Do not invent traction metrics on-site |
 
@@ -37,7 +37,7 @@ From the pretty-explosion project root:
 - [ ] Production build exits 0
 - [ ] Spot-check /, /start, /studio, /grants, /contact on desktop + phone width
 - [ ] Confirm galactic cover + blackhole nav/footer still load from public/brand/logo/
-- [ ] Confirm contact form validates without a backend
+- [ ] Confirm `/contact` and `/recruit` show an error when `RESEND_API_KEY` is missing, and deliver to prettyxplosion@gmail.com when it is set
 
 ---
 

@@ -19,17 +19,17 @@ export default function ContactPage() {
             </h1>
             <p className="mt-4 max-w-xl text-muted leading-relaxed">
               Book Quality Video, ask about grants, pitch a story, or explore a partnership.
-              This preview validates on-device and simulates submit.
+              Messages from this form go to the studio inbox.
             </p>
           </div>
           <div className="glass rounded-2xl p-5 text-sm text-muted">
-            <p className="font-medium text-foreground">Preview note</p>
+            <p className="font-medium text-foreground">Studio inbox</p>
             <p className="mt-2 leading-relaxed">
               Email us at{" "}
               <a href="mailto:prettyxplosion@gmail.com" className="text-accent underline-offset-2 hover:underline">
                 prettyxplosion@gmail.com
               </a>
-              . Form submits are still preview-only (no backend mailer yet). Mailing address TBD with Pretty Explosion Ltd.
+              , or send the form — it delivers to that address. Mailing address TBD with Pretty Explosion Ltd.
             </p>
           </div>
         </div>

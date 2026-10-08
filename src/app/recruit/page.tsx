@@ -91,11 +91,11 @@ export default function RecruitPage() {
               Tell us where you fit on set
             </h2>
             <p className="mt-3 mb-8 max-w-xl text-sm text-muted">
-              Preview form — validates on-device and simulates submit. Or write{" "}
+              The form delivers to{" "}
               <a href="mailto:prettyxplosion@gmail.com" className="text-accent underline-offset-2 hover:underline">
                 prettyxplosion@gmail.com
               </a>
-              .
+              , or write that address directly.
             </p>
             <RecruitForm />
           </div>

@@ -33,7 +33,7 @@ Soft-launch of a marketing shell can proceed once domain + hosting + metadataBas
 - [x] Journalism desk — standards + sample directions marked illustrative
 - [x] Invest page — Canada/BC securities disclaimer; no fake traction / AUM
 - [x] Payments and Energy page — CAD-first framing; prepaid Energy; no live checkout
-- [x] Contact form — client validation + mock submit
+- [x] Contact form — validated submissions on `/contact` and `/recruit`, delivered by Resend once `RESEND_API_KEY` is set
 - [x] Contact email — prettyxplosion@gmail.com (mailto on Contact + Footer)
 - [x] AI client promise — brief to preview to approve across /ai, /studio, /start
 - [x] Internal docs — FINAL-DRAFT, deploy, BC setup, payments notes, marketing plan
@@ -71,7 +71,7 @@ Soft-launch of a marketing shell can proceed once domain + hosting + metadataBas
 
 - [ ] Real grant programs to replace example catalog rows
 - [ ] Domain email / Workspace later (initial contact: prettyxplosion@gmail.com)
-- [ ] Contact form mailer (Resend, Formspree, etc.)
+- [ ] Resend API key on the host — form code is wired; inbox delivery stays off until `RESEND_API_KEY` is set (see `.env.example`)
 - [ ] Analytics (privacy-aware for Canada)
 
 ---

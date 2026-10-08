@@ -1,47 +1,64 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { postInquiry, validateInquiry, type InquiryFieldErrors } from "@/lib/inquiry";
 
 type Errors = Partial<Record<"name" | "email" | "projectType" | "message", string>>;
+
+function toFormErrors(fieldErrors: InquiryFieldErrors | undefined): Errors {
+  if (!fieldErrors) return {};
+  const errors: Errors = {};
+  if (fieldErrors.name) errors.name = fieldErrors.name;
+  if (fieldErrors.email) errors.email = fieldErrors.email;
+  if (fieldErrors.topic) errors.projectType = fieldErrors.topic;
+  if (fieldErrors.message) errors.message = fieldErrors.message;
+  return errors;
+}
 
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [projectType, setProjectType] = useState("General inquiry");
   const [message, setMessage] = useState("");
+  const [botField, setBotField] = useState("");
   const [errors, setErrors] = useState<Errors>({});
+  const [formError, setFormError] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
 
-  function validate(): Errors {
-    const next: Errors = {};
-    if (!name.trim() || name.trim().length < 2) next.name = "Please enter your name.";
-    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      next.email = "Enter a valid email address.";
-    }
-    if (!projectType.trim()) next.projectType = "Choose a project type.";
-    if (!message.trim() || message.trim().length < 20) {
-      next.message = "Share at least 20 characters so we can help.";
-    }
-    return next;
-  }
-
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    const next = validate();
+    setFormError("");
+    const fields = {
+      kind: "contact" as const,
+      name,
+      email,
+      topic: projectType,
+      message,
+      botField,
+    };
+    const next = toFormErrors(validateInquiry(fields));
     setErrors(next);
     if (Object.keys(next).length > 0) return;
+
     setSending(true);
-    window.setTimeout(() => {
-      setSending(false);
-      setSubmitted(true);
-      setName("");
-      setEmail("");
-      setProjectType("General inquiry");
-      setMessage("");
-    }, 700);
+    const result = await postInquiry(fields);
+    setSending(false);
+
+    if (!result.ok) {
+      setErrors(toFormErrors(result.fieldErrors));
+      setFormError(result.error);
+      return;
+    }
+
+    setSubmitted(true);
+    setName("");
+    setEmail("");
+    setProjectType("General inquiry");
+    setMessage("");
+    setBotField("");
   }
 
   return (
@@ -63,8 +80,7 @@ export function ContactForm() {
               Got it — thanks
             </h2>
             <p className="mx-auto mt-3 max-w-md text-sm text-muted">
-              This local preview does not send email yet. Your note validated and simulated a
-              submit so we can demo the flow.
+              Your message is in the studio inbox. We&apos;ll reply at the email you entered.
             </p>
             <button type="button" className="btn-secondary mt-8 text-sm" onClick={() => setSubmitted(false)}>
               Send another
@@ -80,6 +96,19 @@ export function ContactForm() {
             className="relative space-y-5"
             noValidate
           >
+            <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+              <label>
+                Website
+                <input
+                  type="text"
+                  name="bot-field"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={botField}
+                  onChange={(event) => setBotField(event.target.value)}
+                />
+              </label>
+            </div>
             <div className="grid gap-5 md:grid-cols-2">
               <label className="block text-sm">
                 <span className="mb-2 block font-medium">Name</span>
@@ -88,6 +117,7 @@ export function ContactForm() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   autoComplete="name"
+                  aria-required="true"
                   aria-invalid={!!errors.name}
                 />
                 {errors.name && <span className="mt-1.5 block text-xs text-accent">{errors.name}</span>}
@@ -100,6 +130,7 @@ export function ContactForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   autoComplete="email"
+                  aria-required="true"
                   aria-invalid={!!errors.email}
                 />
                 {errors.email && <span className="mt-1.5 block text-xs text-accent">{errors.email}</span>}
@@ -111,6 +142,8 @@ export function ContactForm() {
                 className="input-field cursor-pointer"
                 value={projectType}
                 onChange={(e) => setProjectType(e.target.value)}
+                aria-required="true"
+                aria-invalid={!!errors.projectType}
               >
                 <option>General inquiry</option>
                 <option>Quality Video / studio brief</option>
@@ -129,15 +162,21 @@ export function ContactForm() {
                 className="input-field min-h-[140px] resize-y"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
+                aria-required="true"
                 aria-invalid={!!errors.message}
               />
               {errors.message && (
                 <span className="mt-1.5 block text-xs text-accent">{errors.message}</span>
               )}
             </label>
+            {formError && (
+              <p role="alert" className="rounded-2xl border border-card-border bg-card px-4 py-3 text-sm text-foreground">
+                {formError}
+              </p>
+            )}
             <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
-              <p className="text-xs text-muted">Client-side validation · mock submit only</p>
-              <button type="submit" className="btn-primary" disabled={sending}>
+              <p className="text-xs text-muted">We&apos;ll reply to the email you enter.</p>
+              <button type="submit" className="btn-primary" disabled={sending} aria-busy={sending}>
                 {sending ? "Sending…" : "Send message"}
               </button>
             </div>
